@@ -68,27 +68,21 @@ export function OverallProgress() {
   ];
 
   const gcUnits = ProgressReport.units.filter((x) =>
-    x.name.includes("/dolphin/") ||
-    x.name.includes("/PowerPC_EABI_Support/") ||
-    x.name.includes("/TRK_MINNOW_DOLPHIN/") ||
-    x.name.includes("/amcstubs/") ||
-    x.name.includes("/OdemuExi2/") ||
-    x.name.includes("/odenotstub/")
+    x.name.includes("/sdk/")
   );
   const engineUnits = ProgressReport.units.filter((x) =>
-    x.name.includes("/m_Do/") ||
-    x.name.includes("/f_ap/") ||
-    x.name.includes("/f_op/") ||
-    x.name.includes("/f_pc/") ||
-    x.name.includes("/SSystem/") ||
-    x.name.includes("/JSystem/") ||
-    x.name == "framework/DynamicLink" ||
-    x.name == "framework/c/c_dylink"
+    x.name.includes("/network/") ||
+    x.name.includes("/system/") ||
+    x.name.includes("/lib/")
   );
   const gameUnits = ProgressReport.units.filter((x) =>
-    x.name.includes("/d/") ||
-    x.name.includes("/JAZelAudio/") ||
-    x.name == "framework/c/c_damagereaction"
+    x.name.includes("/band3/") ||
+    x.name.includes("/App") ||
+    x.name.includes("/BudgetScreen") ||
+    x.name.includes("/ChecksumData_wii") ||
+    x.name.includes("/keygen_wii") ||
+    x.name.includes("/Main") ||
+    x.name.includes("/BandOffline") 
   );
   const otherUnits = ProgressReport.units.filter((x) =>
     !gcUnits.includes(x) &&
@@ -98,15 +92,15 @@ export function OverallProgress() {
 
   const allFolders = [
     {
-      name: "TWW Game Code",
+      name: "Rock Band 3 Code",
       units: gameUnits,
     },
     {
-      name: "Core Game Engine",
+      name: "Core Engine Code",
       units: engineUnits,
     },
     {
-      name: "GameCube Specific Code",
+      name: "Wii SDK Code",
       units: gcUnits,
     },
   ];
@@ -164,11 +158,9 @@ export function OverallProgress() {
   };
 
   type ProgressHistory = {
-    tww: {
-      GZLE01: {
-        all: ProgressHistoryEntry[],
+    rb3: {
+      SZBE69_B8: {
         dol: ProgressHistoryEntry[],
-        modules: ProgressHistoryEntry[],
       },
     },
   };
@@ -177,7 +169,7 @@ export function OverallProgress() {
     var timestamps: number[] = [];
     var code_percentages: number[] = [];
     var data_percentages: number[] = [];
-    result.tww.GZLE01.all.reverse().map((entry) => {
+    result.rb3.SZBE69_B8.dol.reverse().map((entry) => {
       timestamps.push(entry.timestamp);
       code_percentages.push(100 * (entry.measures.code / entry.measures["code/total"]));
       data_percentages.push(100 * (entry.measures.data / entry.measures["data/total"]));
@@ -185,7 +177,7 @@ export function OverallProgress() {
     return [timestamps, code_percentages, data_percentages];
   }
 
-  const progressHistoryUrl = "https://progress.decomp.club/data/tww/GZLE01/?mode=all";
+  const progressHistoryUrl = "https://progress.decomp.club/data/rb3/SZBE69_B8/dol/?mode=all";
 
   useEffect(() => {
     fetch(progressHistoryUrl)
@@ -193,7 +185,7 @@ export function OverallProgress() {
       .then((res: ProgressHistory) => {
         const linkedSpan = document.getElementById("linked-percent");
         if (linkedSpan != null) {
-          const latestEntry = res.tww.GZLE01.all[0];
+          const latestEntry = res.rb3.SZBE69_B8.dol[0];
           const linkedCodePercent = 100 * (latestEntry.measures.code / latestEntry.measures["code/total"]);
           const linkedDataPercent = 100 * (latestEntry.measures.data / latestEntry.measures["data/total"]);
           set_linked_code_percent(linkedCodePercent);
@@ -228,7 +220,7 @@ export function OverallProgress() {
       <Stack gap={"md"}>
         <div>
           <h1>
-            The Wind Waker is {prettyPercent(total_percent)}{" "}
+            Rock Band 3 is {prettyPercent(total_percent)}{" "}
             decompiled <span id="linked-percent"></span>
           </h1>
           <div>
@@ -333,7 +325,7 @@ export function OverallProgress() {
                 onChange={(value) => setHighlightMetric(value as FileMetric)}
               />
             </Group>
-            <Tabs defaultValue="TWW Game Code">
+            <Tabs defaultValue="Rock Band 3 Code">
               <Tabs.List>
               {allFolders.map((folder, index) => (
                 <Tabs.Tab key={index} value={folder.name}>

@@ -38,18 +38,9 @@ function App() {
                 <UnstyledButton
                   component="a"
                   target={"_blank"}
-                  href="https://github.com/zeldaret/tww"
+                  href="https://github.com/DarkRTA/rb3"
                 >
                   <IconBrandGithubFilled size={"1.5rem"} stroke={1.5} />
-                </UnstyledButton>
-              </Tooltip>
-              <Tooltip label="Join us on Discord">
-                <UnstyledButton
-                  component="a"
-                  target={"_blank"}
-                  href="https://discord.com/invite/DqwyCBYKqf/"
-                >
-                  <IconBrandDiscordFilled size={"1.5rem"} stroke={1.5} />
                 </UnstyledButton>
               </Tooltip>
             </Group>

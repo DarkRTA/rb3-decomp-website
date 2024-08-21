@@ -10,17 +10,17 @@ export function About() {
     <Container id="main" size={"lg"}>
       <Stack>
         <div>
-          <h1>The Wind Waker Decompilation Project</h1>
+          <h1>The Rock Band 3 Decompilation Project</h1>
           <div>
             <p>
-              An effort to reverse engineer the 2002 game "
+              An effort to reverse engineer the 2010 game "
               <Anchor
-                href="https://en.wikipedia.org/wiki/The_Legend_of_Zelda:_The_Wind_Waker"
+                href="Rock Band 3"
                 target={"_blank"}
               >
-                The Legend of Zelda: The Wind Waker
+                Rock Band 3
               </Anchor>
-              " (often abbreviated as TWW). This project aims to decompile the
+              " (often abbreviated as RB3). This project aims to decompile the
               game's original binary code back into its source code form.
             </p>
           </div>
