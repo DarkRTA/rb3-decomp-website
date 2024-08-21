@@ -14,7 +14,7 @@ export const FileName = (path: string): string => {
 
 export function GithubLink(path: string): string {
   return (
-    "https://github.com/DarkRTA/rb3/blob/main/src/" +
+    "https://github.com/DarkRTA/rb3/blob/master/src/" +
     path.substring(path.indexOf("/") + 1) +
     ".cpp" // TODO: this won't work for C files
   );
