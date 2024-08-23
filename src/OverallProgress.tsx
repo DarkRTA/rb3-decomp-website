@@ -71,8 +71,10 @@ export function OverallProgress() {
     x.name.includes("/sdk/")
   );
   const engineUnits = ProgressReport.units.filter((x) =>
+    x.name.includes("/system/")
+  );
+  const libUnits = ProgressReport.units.filter((x) =>
     x.name.includes("/network/") ||
-    x.name.includes("/system/") ||
     x.name.includes("/lib/")
   );
   const gameUnits = ProgressReport.units.filter((x) =>
@@ -87,6 +89,7 @@ export function OverallProgress() {
   const otherUnits = ProgressReport.units.filter((x) =>
     !gcUnits.includes(x) &&
     !engineUnits.includes(x) &&
+    !libUnits.includes(x) &&
     !gameUnits.includes(x)
   );
 
@@ -102,6 +105,10 @@ export function OverallProgress() {
     {
       name: "Wii SDK Code",
       units: gcUnits,
+    },
+    {
+      name: "Third Party Code",
+      units: libUnits,
     },
   ];
   if (otherUnits.length > 0) {
