@@ -74,8 +74,10 @@ export function OverallProgress() {
     x.name.includes("/system/")
   );
   const libUnits = ProgressReport.units.filter((x) =>
-    x.name.includes("/network/") ||
     x.name.includes("/lib/")
+  );
+  const netUnits = ProgressReport.units.filter((x) => 
+    x.name.includes("/network/")
   );
   const gameUnits = ProgressReport.units.filter((x) =>
     x.name.includes("/band3/") ||
@@ -90,25 +92,30 @@ export function OverallProgress() {
     !gcUnits.includes(x) &&
     !engineUnits.includes(x) &&
     !libUnits.includes(x) &&
+    !netUnits.includes(x) &&
     !gameUnits.includes(x)
   );
 
   const allFolders = [
     {
-      name: "Rock Band 3 Code",
+      name: "RB3 Code",
       units: gameUnits,
     },
     {
-      name: "Core Engine Code",
+      name: "Engine Code",
       units: engineUnits,
     },
     {
-      name: "Wii SDK Code",
-      units: gcUnits,
+      name: "Network Code",
+      units: netUnits,
     },
     {
       name: "Third Party Code",
       units: libUnits,
+    },
+    {
+      name: "SDK Code",
+      units: gcUnits,
     },
   ];
   if (otherUnits.length > 0) {
